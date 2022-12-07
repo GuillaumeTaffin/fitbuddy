@@ -1,5 +1,8 @@
-import 'package:fitbuddy/back/utils.dart';
+import 'package:fitbuddy/back/server.dart';
+import 'package:fitbuddy/back/user/user.dart';
+import 'package:fitbuddy/front/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   await connectSupabase();
@@ -10,27 +13,16 @@ void main() async {
 class FitBuddyApp extends StatelessWidget {
   const FitBuddyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FIT BUDDY',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Home(),
-    );
-  }
-}
-
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('FIT BUDDY'),
+    return RepositoryProvider(
+      create: (context) => User(SupabaseServer()),
+      child: MaterialApp.router(
+        title: 'FIT BUDDY',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        routerConfig: router,
       ),
     );
   }
