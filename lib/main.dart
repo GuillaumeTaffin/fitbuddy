@@ -20,7 +20,7 @@ class FitBuddyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'FIT BUDDY',
         theme: ThemeData(
-          colorScheme: ColorScheme.dark().copyWith(primary: Colors.deepOrange),
+          colorScheme: ColorScheme.light().copyWith(primary: Colors.deepOrange),
         ),
         routerConfig: router,
       ),
